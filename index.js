@@ -166,13 +166,15 @@ async function run() {
         // admin API
         app.get('/driverUser/:email', async (req, res) => {
             const email = req.params.email;
+            console.log(email);
             const query = { email: email };
+            console.log(query);
             const user = await driverCollection.findOne(query);
             let isAdmin = false;
             if (user?.role === 'admin') {
                 isAdmin = true;
             }
-            res.json({ admin: isAdmin })
+            res.json({ admin: isAdmin, user: user })
         })
 
 
